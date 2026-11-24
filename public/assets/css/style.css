@@ -1,0 +1,893 @@
+/* ==========================================================================
+   CertiLap - Clean White & Soft Red Hardware Diagnostic Theme
+   Concept: Crisp, Clean, and Formal White Background with Tasteful Soft Red / Ruby Accents
+   Aesthetic: Premium Hardware Diagnostic Suite (White Edition / Razer Quartz & ROG White)
+   Fonts: Rajdhani (Headings & Hardware Badges), Plus Jakarta Sans (Body), JetBrains Mono (Math/Code)
+   Palette: Pure White & Slate (#FFFFFF, #F8FAFC) + Soft Crimson / Ruby Red (#E11D48, #F43F5E)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+    /* Soft Red / Crimson Ruby Accent */
+    --accent-red:        #E11D48;
+    --accent-red-soft:   #F43F5E;
+    --accent-red-light:  #FB7185;
+    --accent-red-glow:   rgba(225, 29, 72, 0.2);
+    --accent-red-subtle: #FFF1F2;
+    --accent-red-border: #FECDD3;
+
+    /* Clean White & Light Slate Palette */
+    --surface-white:     #FFFFFF;
+    --surface-light:     #F8FAFC;
+    --surface-card:      #FFFFFF;
+    --surface-hover:     #FFF1F2;
+    --border-light:      #E2E8F0;
+    --border-subtle:     #F1F5F9;
+
+    /* Text Colors for White Background */
+    --text-dark:         #0F172A;
+    --text-primary:      #1E293B;
+    --text-body:         #334155;
+    --text-muted:        #64748B;
+    --text-dim:          #94A3B8;
+
+    /* Semantic Accents */
+    --accent-cyan:       #0284C7;
+    --accent-amber:      #D97706;
+    --accent-green:      #059669;
+
+    /* Typography */
+    --font-heading:      'Rajdhani', sans-serif;
+    --font-body:         'Plus Jakarta Sans', sans-serif;
+    --font-mono:         'JetBrains Mono', monospace;
+
+    /* Radii & Transitions */
+    --radius-sm:         6px;
+    --radius-md:         10px;
+    --radius-lg:         14px;
+    --transition:        all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--surface-light);
+    color: var(--text-body);
+    margin: 0;
+    line-height: 1.65;
+    background-image: 
+        radial-gradient(circle at 10% 10%, rgba(225, 29, 72, 0.035) 0%, transparent 45%),
+        radial-gradient(circle at 90% 90%, rgba(225, 29, 72, 0.03) 0%, transparent 45%),
+        linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+/* Text Colors */
+.text-accent-red { color: var(--accent-red) !important; }
+.text-accent-cyan { color: var(--accent-cyan) !important; }
+.text-accent-amber { color: var(--accent-amber) !important; }
+.text-accent-green { color: var(--accent-green) !important; }
+.text-dim { color: var(--text-dim) !important; }
+
+/* Bootstrap Primary Overrides */
+.text-primary { color: var(--accent-red) !important; }
+.bg-primary { background-color: var(--accent-red) !important; }
+.border-primary { border-color: var(--accent-red) !important; }
+
+/* ==========================================================================
+   Top Hardware Status Bar
+   ========================================================================== */
+.status-ticker-bar {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--border-light);
+    padding: 7px 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+.navbar-app {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    transition: var(--transition);
+}
+
+.navbar-app .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-body);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.navbar-app .nav-link:hover,
+.navbar-app .nav-link.active {
+    color: var(--accent-red);
+    background: var(--accent-red-subtle);
+}
+
+/* ==========================================================================
+   Buttons (Soft Red Palette)
+   ========================================================================== */
+.btn-gaming-primary {
+    background: linear-gradient(135deg, var(--accent-red) 0%, #BE123C 100%);
+    color: #FFFFFF !important;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.92rem;
+    border: 1px solid var(--accent-red);
+    border-radius: var(--radius-sm);
+    padding: 9px 20px;
+    box-shadow: 0 4px 14px var(--accent-red-glow);
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-gaming-primary:hover {
+    background: linear-gradient(135deg, var(--accent-red-soft) 0%, var(--accent-red) 100%);
+    box-shadow: 0 6px 18px rgba(225, 29, 72, 0.35);
+    transform: translateY(-2px);
+    color: #FFFFFF !important;
+}
+
+.btn-gaming-outline {
+    background: #FFFFFF;
+    color: var(--accent-red) !important;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.92rem;
+    border: 1px solid var(--accent-red-border);
+    border-radius: var(--radius-sm);
+    padding: 9px 20px;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-gaming-outline:hover {
+    background: var(--accent-red-subtle);
+    border-color: var(--accent-red);
+    color: var(--accent-red) !important;
+    transform: translateY(-2px);
+}
+
+.btn-gaming-secondary {
+    background: #F1F5F9;
+    color: var(--text-body) !important;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.88rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-gaming-secondary:hover {
+    background: #E2E8F0;
+    color: var(--text-dark) !important;
+    border-color: #CBD5E1;
+}
+
+/* ==========================================================================
+   Cards & Panels on White
+   ========================================================================== */
+.card, .gaming-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.gaming-card:hover {
+    border-color: var(--accent-red-border);
+    box-shadow: 0 8px 24px rgba(225, 29, 72, 0.08);
+    transform: translateY(-3px);
+}
+
+/* Feature Step Card */
+.step-feature-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    position: relative;
+    transition: var(--transition);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    height: 100%;
+}
+
+.step-feature-card:hover {
+    border-color: var(--accent-red-soft);
+    box-shadow: 0 8px 24px rgba(225, 29, 72, 0.1);
+    transform: translateY(-4px);
+}
+
+.step-feature-card .step-number {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent-red);
+    background: var(--accent-red-subtle);
+    border: 1px solid var(--accent-red-border);
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+
+/* Hardware Damage Catalog Card */
+.hardware-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    transition: var(--transition);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    height: 100%;
+}
+
+.hardware-card:hover {
+    border-color: var(--accent-red-soft);
+    background: #FFFFFF;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(225, 29, 72, 0.1);
+}
+
+.hardware-card .hardware-icon-box {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    background: var(--accent-red-subtle);
+    border: 1px solid var(--accent-red-border);
+    color: var(--accent-red);
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+}
+
+/* Stats Card */
+.card-stat {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.card-stat:hover {
+    border-color: var(--accent-red-border);
+}
+
+.stat-icon {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px;
+    max-width: 48px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Interactive CF Simulator Panel (Light Theme)
+   ========================================================================== */
+.simulator-card {
+    background: #FFFFFF;
+    border: 1px solid var(--accent-red-border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(225, 29, 72, 0.06);
+}
+
+.sim-case-btn {
+    background: #F8FAFC;
+    border: 1px solid var(--border-light);
+    color: var(--text-body);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.sim-case-btn:hover, .sim-case-btn.active {
+    background: var(--accent-red-subtle);
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+.cf-gauge-bar {
+    height: 16px;
+    background: #E2E8F0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #CBD5E1;
+}
+
+.cf-gauge-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #BE123C 0%, #E11D48 60%, #FB7185 100%);
+    width: 0%;
+    transition: width 0.35s ease;
+    box-shadow: 0 0 10px var(--accent-red-glow);
+}
+
+/* ==========================================================================
+   Form Controls on White
+   ========================================================================== */
+.form-control, .form-select {
+    background-color: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    color: var(--text-dark) !important;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #FFFFFF !important;
+    border-color: var(--accent-red) !important;
+    box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.15) !important;
+    color: var(--text-dark) !important;
+}
+
+.input-group-text {
+    background-color: #F8FAFC !important;
+    border: 1px solid #CBD5E1 !important;
+    color: var(--accent-red) !important;
+}
+
+/* ==========================================================================
+   Auth Container (Login & Register)
+   ========================================================================== */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+    background-color: var(--surface-light);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+
+.auth-card:hover {
+    border-color: var(--accent-red-border);
+}
+
+/* ==========================================================================
+   Sidebar & App Framework
+   ========================================================================== */
+.sidebar {
+    background: #FFFFFF !important;
+    border-right: 1px solid var(--border-light) !important;
+}
+
+.sidebar .nav-link {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .nav-link:hover {
+    color: var(--accent-red);
+    background: var(--accent-red-subtle);
+}
+
+.sidebar .nav-link.active {
+    color: var(--accent-red);
+    background: var(--accent-red-subtle);
+    border-left: 3px solid var(--accent-red);
+    font-weight: 600;
+}
+
+.main-content {
+    min-height: calc(100vh - 140px);
+    background-color: var(--surface-light);
+}
+
+/* Tables */
+.table {
+    color: var(--text-body) !important;
+    border-color: var(--border-light) !important;
+}
+
+.table th {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.84rem;
+    background-color: #F8FAFC !important;
+    color: var(--text-muted) !important;
+    border-bottom: 2px solid var(--border-light) !important;
+}
+
+.table td {
+    background-color: transparent !important;
+    border-color: var(--border-light) !important;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover td {
+    background-color: var(--accent-red-subtle) !important;
+}
+
+/* Sticky Action Bar (HCI Feedback) */
+.sticky-action-bar {
+    position: sticky;
+    bottom: 16px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--accent-red-border);
+    border-radius: var(--radius-md);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+}
+
+/* Filter category pills */
+.category-tab-btn {
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+}
+
+.category-tab-btn:hover {
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+    color: var(--text-dark);
+}
+
+.category-tab-btn.active {
+    background: var(--accent-red-subtle);
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    font-weight: 600;
+    box-shadow: 0 2px 8px var(--accent-red-glow);
+}
+
+.category-count-badge {
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.gejala-row {
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    transition: var(--transition);
+}
+
+.gejala-row:hover {
+    border-color: #CBD5E1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.gejala-row.selected {
+    border-color: var(--accent-red-soft) !important;
+    background: #FFF5F7 !important;
+    box-shadow: 0 2px 12px rgba(225, 29, 72, 0.08);
+}
+
+/* =========================================================================
+   GAMIFIED QUIZ QUESTIONNAIRE DECK (Spacious, Soft & Human-Centered HCI)
+   ========================================================================= */
+.quiz-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* Master Quiz Stage Card */
+.quiz-stage-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+    padding: 36px 36px 30px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+@media (max-width: 576px) {
+    .quiz-stage-card {
+        padding: 24px 18px 20px 18px;
+        border-radius: 20px;
+    }
+}
+
+/* Progress & Category Top Bar */
+.quiz-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.quiz-cat-pill {
+    background: #FFF1F2;
+    color: var(--accent-red);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quiz-progress-track {
+    height: 6px;
+    background: #F1F5F9;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 28px;
+}
+
+.quiz-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-red), #FB7185);
+    border-radius: 10px;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Question Area */
+.quiz-question-box {
+    margin-bottom: 28px;
+}
+
+.quiz-q-badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #94A3B8;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.quiz-main-question {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #0F172A;
+    line-height: 1.45;
+    margin-bottom: 12px;
+    font-family: var(--font-heading);
+}
+
+@media (max-width: 576px) {
+    .quiz-main-question {
+        font-size: 1.15rem;
+    }
+}
+
+.quiz-clue-callout {
+    background: #F8FAFC;
+    border-radius: 14px;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    color: #475569;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+}
+
+/* Choice Cards - Soft, Pill-Rounded, Generous */
+.quiz-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.quiz-option-item {
+    background: #F8FAFC;
+    border: 1.5px solid transparent;
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    position: relative;
+}
+
+.quiz-option-item:hover {
+    background: #FFFFFF;
+    border-color: #CBD5E1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.quiz-option-item:active {
+    transform: scale(0.99);
+}
+
+.quiz-option-item.active {
+    background: #FFF1F2 !important;
+    border-color: var(--accent-red) !important;
+    box-shadow: 0 4px 18px rgba(225, 29, 72, 0.12) !important;
+}
+
+.quiz-option-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.quiz-option-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.quiz-option-item[data-cf="0"] .quiz-option-icon {
+    background: #E2E8F0;
+    color: #475569;
+}
+.quiz-option-item[data-cf="0.2"] .quiz-option-icon {
+    background: #FEF9C3;
+    color: #CA8A04;
+}
+.quiz-option-item[data-cf="0.4"] .quiz-option-icon {
+    background: #FFEDD5;
+    color: #EA580C;
+}
+.quiz-option-item[data-cf="0.6"] .quiz-option-icon {
+    background: #FFE4E6;
+    color: #E11D48;
+}
+.quiz-option-item[data-cf="1.0"] .quiz-option-icon {
+    background: #E11D48;
+    color: #FFFFFF;
+}
+
+.quiz-option-item.active[data-cf="0"] .quiz-option-icon {
+    background: #22C55E;
+    color: #FFFFFF;
+}
+
+.quiz-option-title {
+    font-weight: 700;
+    color: #1E293B;
+    font-size: 0.98rem;
+    margin-bottom: 2px;
+}
+
+.quiz-option-desc {
+    color: #64748B;
+    font-size: 0.85rem;
+}
+
+.quiz-radio-indicator {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #CBD5E1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.quiz-option-item.active .quiz-radio-indicator {
+    border-color: var(--accent-red);
+    background: var(--accent-red);
+}
+
+.quiz-option-item.active[data-cf="0"] .quiz-radio-indicator {
+    border-color: #22C55E;
+    background: #22C55E;
+}
+
+.quiz-radio-check {
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quiz-option-item.active .quiz-radio-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Integrated Card Footer Actions */
+.quiz-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid #F1F5F9;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* Quest Map Modal Grid */
+.quest-map-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 10px;
+}
+
+.quest-node-btn {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 10px 4px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.quest-node-btn:hover {
+    background: #F1F5F9;
+    border-color: #CBD5E1;
+}
+
+.quest-node-btn.answered {
+    background: #FFF1F2;
+    border-color: var(--accent-red-soft);
+    color: var(--accent-red);
+    font-weight: 700;
+}
+
+.quest-node-btn.current {
+    box-shadow: 0 0 0 2px var(--accent-red);
+    background: var(--accent-red);
+    color: #FFFFFF;
+}
+
+.quest-node-btn.current .badge-cf {
+    background: rgba(255, 255, 255, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+/* Sticky Action Bar (HCI Feedback) */
+.sticky-action-bar {
+    position: sticky;
+    bottom: 16px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--accent-red-border);
+    border-radius: var(--radius-md);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+    background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-red);
+}
