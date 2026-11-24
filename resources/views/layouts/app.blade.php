@@ -11,6 +11,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Custom Clean White & Soft Red CSS -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <!-- Dashboard Interactive Components -->
+    <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
 <body>
@@ -43,7 +45,7 @@
                     @if(auth()->user()->isAdmin())
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                                <i class="bi bi-speedometer2 me-1 text-accent-cyan"></i>Dashboard
+                                <i class="bi bi-speedometer2 me-1 text-accent-red"></i>Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
@@ -53,7 +55,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.gejala.*') ? 'active' : '' }}" href="{{ route('admin.gejala.index') }}">
-                                <i class="bi bi-clipboard-pulse me-1 text-accent-amber"></i>Gejala
+                                <i class="bi bi-clipboard-pulse me-1 text-accent-red"></i>Gejala
                             </a>
                         </li>
                         <li class="nav-item">
@@ -63,18 +65,18 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
-                                <i class="bi bi-people me-1 text-accent-green"></i>Pengguna
+                                <i class="bi bi-people me-1 text-accent-red"></i>Pengguna
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.riwayat.*') ? 'active' : '' }}" href="{{ route('admin.riwayat.index') }}">
-                                <i class="bi bi-clock-history me-1 text-accent-cyan"></i>Riwayat
+                                <i class="bi bi-clock-history me-1 text-accent-red"></i>Riwayat
                             </a>
                         </li>
                     @else
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('user.dashboard') ? 'active' : '' }}" href="{{ route('user.dashboard') }}">
-                                <i class="bi bi-house me-1 text-accent-cyan"></i>Beranda
+                                <i class="bi bi-house me-1 text-accent-red"></i>Beranda
                             </a>
                         </li>
                         <li class="nav-item">
@@ -84,12 +86,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('user.riwayat.*') ? 'active' : '' }}" href="{{ route('user.riwayat.index') }}">
-                                <i class="bi bi-clock-history me-1 text-accent-amber"></i>Riwayat Diagnosa
+                                <i class="bi bi-clock-history me-1 text-accent-red"></i>Riwayat Diagnosa
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('user.profil') ? 'active' : '' }}" href="{{ route('user.profil') }}">
-                                <i class="bi bi-person-circle me-1 text-accent-green"></i>Profil Saya
+                                <i class="bi bi-person-circle me-1 text-accent-red"></i>Profil Saya
                             </a>
                         </li>
                     @endif

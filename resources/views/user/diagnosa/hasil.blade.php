@@ -39,7 +39,7 @@
             
             <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
                 <div class="d-flex align-items-center gap-2 fs-2 fw-bold text-accent-red font-heading">
-                    <i class="bi bi-patch-check-fill text-accent-amber"></i>
+                    <i class="bi bi-patch-check-fill text-accent-red"></i>
                     <span>{{ $riwayat->persentase }}%</span>
                 </div>
                 <span class="badge px-3 py-2 rounded" style="background: var(--accent-red-subtle); color: var(--accent-red); border: 1px solid var(--accent-red-border);">
@@ -63,16 +63,16 @@
 </div>
 
 <!-- Rekomendasi Solusi Penanganan -->
-<div class="gaming-card mb-4" style="border-left: 4px solid var(--accent-green) !important;">
+<div class="gaming-card mb-4" style="border-left: 4px solid var(--accent-red) !important;">
     <div class="p-3 border-bottom d-flex align-items-center justify-content-between" style="border-color: var(--border-light) !important; background: var(--surface-light);">
         <div class="fw-bold text-dark fs-6">
-            <i class="bi bi-tools text-accent-green me-2"></i>Rekomendasi Tindakan & Solusi Penanganan
+            <i class="bi bi-tools text-accent-red me-2"></i>Rekomendasi Tindakan & Solusi Penanganan
         </div>
-        <span class="badge" style="background: rgba(5, 150, 105, 0.12); color: var(--accent-green);">Panduan Mandiri</span>
+        <span class="badge" style="background: var(--accent-red-subtle); color: var(--accent-red); border: 1px solid var(--accent-red-border);">Panduan Mandiri</span>
     </div>
     <div class="p-4">
         <div class="p-3 rounded mb-3" style="background: var(--surface-light); border: 1px solid var(--border-light);">
-            <div class="fw-semibold text-accent-cyan mb-1"><i class="bi bi-info-circle me-1"></i>Deskripsi Kerusakan:</div>
+            <div class="fw-semibold text-accent-red mb-1"><i class="bi bi-info-circle me-1"></i>Deskripsi Kerusakan:</div>
             <p class="text-muted small mb-0">{{ $riwayat->kerusakanUtama->deskripsi ?: 'Tidak ada keterangan tambahan.' }}</p>
         </div>
         <div class="fw-bold text-dark mb-2">Panduan Tindakan yang Disarankan:</div>
@@ -82,7 +82,7 @@
     </div>
 </div>
 @else
-<div class="alert alert-warning mb-4 shadow-sm border-0 bg-warning bg-opacity-10 text-warning">
+<div class="alert mb-4 shadow-sm border-0" style="background: #FFF1F2; border-left: 4px solid var(--accent-red) !important; color: var(--accent-red);">
     <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
     <strong>Gejala belum spesifik:</strong> Tidak ada kerusakan yang terdeteksi dengan tingkat signifikansi yang cukup. Coba pilih lebih banyak gejala yang dialami laptop Anda.
 </div>
@@ -151,7 +151,7 @@
 <div class="gaming-card mb-4">
     <div class="p-3 border-bottom d-flex align-items-center justify-content-between" style="border-color: var(--border-light) !important; background: var(--surface-light);">
         <span class="fw-bold text-dark fs-6">
-            <i class="bi bi-journal-code text-accent-cyan me-2"></i>Rincian Gejala yang Dipilih
+            <i class="bi bi-journal-code text-accent-red me-2"></i>Rincian Gejala yang Dipilih
         </span>
         <span class="badge" style="background: var(--accent-red-subtle); color: var(--accent-red);">{{ count($detailsWithCf ?? []) }} Gejala</span>
     </div>
@@ -173,7 +173,7 @@
                     <tr>
                         <td class="ps-4 font-mono text-muted">{{ $idx + 1 }}</td>
                         <td>
-                            <span class="badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent-cyan);">
+                            <span class="badge" style="background: var(--accent-red-subtle); color: var(--accent-red); border: 1px solid var(--accent-red-border);">
                                 {{ $det['kode_gejala'] ?: '-' }}
                             </span>
                         </td>

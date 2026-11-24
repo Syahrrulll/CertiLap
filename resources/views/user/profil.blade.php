@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h4><i class="bi bi-person-circle me-2 text-primary"></i>Profil Saya</h4>
+    <h4><i class="bi bi-person-circle me-2 text-accent-red"></i>Profil Saya</h4>
 </div>
 
 <div class="row g-4">

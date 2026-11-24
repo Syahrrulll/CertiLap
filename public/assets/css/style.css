@@ -6,7 +6,7 @@
    Palette: Pure White & Slate (#FFFFFF, #F8FAFC) + Soft Crimson / Ruby Red (#E11D48, #F43F5E)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 :root {
     /* Soft Red / Crimson Ruby Accent */
@@ -37,8 +37,8 @@
     --accent-amber:      #D97706;
     --accent-green:      #059669;
 
-    /* Typography */
-    --font-heading:      'Rajdhani', sans-serif;
+    /* Typography — unified Plus Jakarta Sans for heading & body */
+    --font-heading:      'Plus Jakarta Sans', sans-serif;
     --font-body:         'Plus Jakarta Sans', sans-serif;
     --font-mono:         'JetBrains Mono', monospace;
 
@@ -73,9 +73,10 @@ body {
 
 h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-dark);
-    letter-spacing: 0.5px;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
 }
 
 .font-mono {
@@ -729,29 +730,31 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     transition: all 0.2s ease;
 }
 
+/* ═══ Monochromatic Red Icon Scale — No other hues ═══ */
 .quiz-option-item[data-cf="0"] .quiz-option-icon {
-    background: #E2E8F0;
-    color: #475569;
+    background: #FFF1F2;
+    color: #FB7185;
 }
 .quiz-option-item[data-cf="0.2"] .quiz-option-icon {
-    background: #FEF9C3;
-    color: #CA8A04;
-}
-.quiz-option-item[data-cf="0.4"] .quiz-option-icon {
-    background: #FFEDD5;
-    color: #EA580C;
-}
-.quiz-option-item[data-cf="0.6"] .quiz-option-icon {
     background: #FFE4E6;
     color: #E11D48;
 }
+.quiz-option-item[data-cf="0.4"] .quiz-option-icon {
+    background: #FDA4AF;
+    color: #BE123C;
+}
+.quiz-option-item[data-cf="0.6"] .quiz-option-icon {
+    background: #F43F5E;
+    color: #FFFFFF;
+}
 .quiz-option-item[data-cf="1.0"] .quiz-option-icon {
-    background: #E11D48;
+    background: #9F1239;
     color: #FFFFFF;
 }
 
+/* Active state: all options use red — override green for cf=0 */
 .quiz-option-item.active[data-cf="0"] .quiz-option-icon {
-    background: #22C55E;
+    background: #E11D48;
     color: #FFFFFF;
 }
 
@@ -784,9 +787,10 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     background: var(--accent-red);
 }
 
+/* Radio indicator: always red, no green override */
 .quiz-option-item.active[data-cf="0"] .quiz-radio-indicator {
-    border-color: #22C55E;
-    background: #22C55E;
+    border-color: var(--accent-red);
+    background: var(--accent-red);
 }
 
 .quiz-radio-check {

@@ -1,115 +1,184 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard Pengguna — CertiLap')
+@section('title', 'Dashboard — CertiLap')
 
 @section('content')
-<!-- Welcome Banner with Clean White & Soft Red Accents -->
-<div class="gaming-card mb-4 p-4 p-md-5" style="background: #FFFFFF; border: 1px solid var(--border-light);">
-    <div class="d-flex align-items-center justify-content-between flex-wrap gap-4 position-relative z-1">
-        <div style="max-width: 620px;">
-            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-3 rounded small"
-                 style="background: var(--accent-red-subtle); border: 1px solid var(--accent-red-border); color: var(--accent-red);">
-                <i class="bi bi-person-check-fill"></i>
-                <span>Sesi Pengguna Aktif &bull; {{ auth()->user()->username }}</span>
-            </div>
-            <h2 class="font-heading text-dark mb-2 fs-2">Selamat Datang, {{ $user->name }}! 👋</h2>
-            <p class="text-muted mb-4 font-body" style="line-height:1.75;">
-                Temukan estimasi awal kerusakan laptop Anda secara terstruktur menggunakan sistem pakar berbasis <strong>Certainty Factor</strong>. Silakan mulai konsultasi baru atau tinjau riwayat diagnosa Anda.
-            </p>
-            <div class="d-flex flex-wrap gap-3">
-                <a href="{{ route('user.diagnosa.index') }}" class="btn btn-gaming-primary px-4 py-2">
-                    <i class="bi bi-lightning-charge-fill me-2"></i>Mulai Diagnosa Laptop
-                </a>
-                <a href="{{ route('user.riwayat.index') }}" class="btn btn-gaming-outline px-4 py-2">
-                    <i class="bi bi-clock-history me-2"></i>Riwayat Diagnosa
-                </a>
-            </div>
+
+{{-- ═══ HERO BANNER ═══ --}}
+<div class="dash-hero mb-4">
+    <div class="dash-hero-left">
+        <div class="dash-hero-pill">
+            <i class="bi bi-person-check-fill"></i>
+            <span>{{ auth()->user()->username }}</span>
+            <span class="dash-hero-dot"></span>
+            <span class="text-accent-red fw-semibold">Aktif</span>
         </div>
-        <div class="d-none d-lg-block text-center p-3">
-            <div class="p-4 rounded" style="background: var(--accent-red-subtle); border: 1px solid var(--accent-red-border);">
-                <i class="bi bi-laptop text-accent-red" style="font-size: 4.8rem; filter: drop-shadow(0 0 14px var(--accent-red-glow));"></i>
-            </div>
+        <h1 class="dash-hero-title">Halo, {{ $user->name }}! 👋</h1>
+        <p class="dash-hero-sub">Diagnosa hardware laptop Anda dengan <strong>Certainty Factor</strong> — cepat, terstruktur, akurat.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="{{ route('user.diagnosa.index') }}" class="btn btn-gaming-primary btn-lg px-5">
+                <i class="bi bi-lightning-charge-fill me-2"></i>Mulai Diagnosa
+            </a>
+            <a href="{{ route('user.riwayat.index') }}" class="btn btn-gaming-outline btn-lg px-4">
+                <i class="bi bi-clock-history me-2"></i>Riwayat
+            </a>
+        </div>
+    </div>
+    <div class="dash-hero-visual d-none d-lg-flex">
+        <div class="dash-hero-ring">
+            <i class="bi bi-laptop"></i>
+        </div>
+        <div class="dash-hero-badge badge-top">
+            <i class="bi bi-cpu-fill me-1"></i> Hardware AI
+        </div>
+        <div class="dash-hero-badge badge-bot">
+            <i class="bi bi-shield-check me-1"></i> CF Engine
         </div>
     </div>
 </div>
 
-<!-- Stats Row -->
+{{-- ═══ STAT CARDS ═══ --}}
 <div class="row g-3 mb-4">
-    <div class="col-sm-6">
-        <div class="card-stat">
-            <div class="stat-icon" style="background: rgba(2, 132, 199, 0.1); color: var(--accent-cyan); border: 1px solid rgba(2, 132, 199, 0.2);">
-                <i class="bi bi-clipboard2-check-fill"></i>
-            </div>
-            <div>
-                <div class="text-muted small fw-semibold">Total Konsultasi Saya</div>
-                <div class="font-heading fs-3 text-dark">{{ $totalDiagnosa }} <span class="fs-6 font-body text-muted">Kali</span></div>
-            </div>
+    <div class="col-6 col-md-3">
+        <div class="dash-stat-card">
+            <div class="dash-stat-icon"><i class="bi bi-clipboard2-pulse-fill"></i></div>
+            <div class="dash-stat-num" data-count="{{ $totalDiagnosa }}">0</div>
+            <div class="dash-stat-label">Total Diagnosa</div>
         </div>
     </div>
-    @if ($lastDiagnosa)
-        @php
-            $pct = (float) $lastDiagnosa->persentase;
-            $badgeColor = $pct >= 75 ? 'danger' : ($pct >= 40 ? 'warning' : 'info');
-        @endphp
-        <div class="col-sm-6">
-            <div class="card-stat">
-                <div class="stat-icon" style="background: var(--accent-red-subtle); color: var(--accent-red); border: 1px solid var(--accent-red-border);">
-                    <i class="bi bi-patch-exclamation-fill"></i>
-                </div>
-                <div class="overflow-hidden">
-                    <div class="text-muted small fw-semibold">Diagnosa Terakhir</div>
-                    <div class="fw-bold text-dark text-truncate">{{ $lastDiagnosa->kerusakanUtama->nama_kerusakan ?? 'Tidak terdeteksi' }}</div>
-                    <span class="badge bg-{{ $badgeColor }} mt-1" style="font-size: 11px;">{{ $pct }}% Kepastian</span>
-                </div>
-            </div>
+    <div class="col-6 col-md-3">
+        <div class="dash-stat-card">
+            <div class="dash-stat-icon"><i class="bi bi-layers-fill"></i></div>
+            <div class="dash-stat-num" data-count="40">0</div>
+            <div class="dash-stat-label">Basis Gejala</div>
         </div>
-    @else
-        <div class="col-sm-6">
-            <div class="card-stat">
-                <div class="stat-icon" style="background: rgba(5, 150, 105, 0.1); color: var(--accent-green); border: 1px solid rgba(5, 150, 105, 0.2);">
-                    <i class="bi bi-check2-circle"></i>
-                </div>
-                <div>
-                    <div class="text-muted small fw-semibold">Status Diagnosa</div>
-                    <div class="fw-bold text-dark">Siap Memulai</div>
-                    <small class="text-muted">Belum ada riwayat tercatat</small>
-                </div>
-            </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="dash-stat-card">
+            <div class="dash-stat-icon"><i class="bi bi-bug-fill"></i></div>
+            <div class="dash-stat-num" data-count="10">0</div>
+            <div class="dash-stat-label">Jenis Kerusakan</div>
         </div>
-    @endif
+    </div>
+    <div class="col-6 col-md-3">
+        @if ($lastDiagnosa)
+            @php $pct = (float) $lastDiagnosa->persentase; @endphp
+            <div class="dash-stat-card dash-stat-card--highlight">
+                <div class="dash-stat-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                <div class="dash-stat-num" data-count="{{ (int)$pct }}" data-suffix="%">0%</div>
+                <div class="dash-stat-label">CF Terakhir</div>
+            </div>
+        @else
+            <a href="{{ route('user.diagnosa.index') }}" class="dash-stat-card dash-stat-card--cta text-decoration-none">
+                <div class="dash-stat-icon"><i class="bi bi-plus-circle-fill"></i></div>
+                <div class="dash-stat-num" style="font-size:1.1rem;">Mulai<br>Sekarang</div>
+                <div class="dash-stat-label">Belum ada data</div>
+            </a>
+        @endif
+    </div>
 </div>
 
-<!-- Quick Guidance Panel -->
-<div class="gaming-card p-4">
-    <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2" style="border-color: var(--border-light) !important;">
-        <span class="fw-bold text-dark"><i class="bi bi-info-circle-fill text-accent-red me-2"></i>Panduan Pemeriksaan Laptop</span>
-        <span class="badge" style="background: var(--surface-light); color: var(--text-muted); border: 1px solid var(--border-light);">Tips Praktis</span>
+{{-- ═══ ALUR DIAGNOSA INTERAKTIF ═══ --}}
+<div class="gaming-card p-4 mb-4">
+    <div class="d-flex align-items-center gap-2 mb-4">
+        <i class="bi bi-map-fill text-accent-red fs-5"></i>
+        <span class="fw-bold text-dark fs-6">Alur Konsultasi</span>
+        <span class="ms-auto badge" style="background:var(--accent-red-subtle);color:var(--accent-red);border:1px solid var(--accent-red-border);">3 Langkah</span>
     </div>
-    <div class="row g-3">
-        <div class="col-md-4">
-            <div class="p-3 rounded h-100" style="background: var(--surface-light); border: 1px solid var(--border-light);">
-                <div class="text-accent-red fw-bold small mb-1">1. Amati Gejala Fisik</div>
-                <p class="text-muted small mb-0 font-body">
-                    Perhatikan apakah laptop mengeluarkan bunyi klik pada harddisk, layar bergaris, panas berlebih, atau mati mendadak.
-                </p>
+    <div class="dash-steps">
+        <a href="{{ route('user.diagnosa.index') }}" class="dash-step-card">
+            <div class="dash-step-num">01</div>
+            <div class="dash-step-icon"><i class="bi bi-search-heart-fill"></i></div>
+            <div class="dash-step-body">
+                <div class="dash-step-title">Pilih Gejala</div>
+                <div class="dash-step-desc">Jawab 40 pertanyaan kondisi hardware satu per satu</div>
             </div>
+            <i class="bi bi-arrow-right-circle-fill dash-step-arrow"></i>
+        </a>
+        <div class="dash-step-connector"><i class="bi bi-chevron-right"></i></div>
+        <div class="dash-step-card">
+            <div class="dash-step-num">02</div>
+            <div class="dash-step-icon"><i class="bi bi-sliders2-vertical"></i></div>
+            <div class="dash-step-body">
+                <div class="dash-step-title">Atur Keyakinan</div>
+                <div class="dash-step-desc">Tentukan skala 0.2 – 1.0 pada setiap gejala</div>
+            </div>
+            <i class="bi bi-arrow-right-circle-fill dash-step-arrow"></i>
         </div>
-        <div class="col-md-4">
-            <div class="p-3 rounded h-100" style="background: var(--surface-light); border: 1px solid var(--border-light);">
-                <div class="text-accent-amber fw-bold small mb-1">2. Pilih Skala Keyakinan</div>
-                <p class="text-muted small mb-0 font-body">
-                    Tentukan seberapa yakin Anda dengan kemunculan gejala tersebut (0.2 hingga 1.0) untuk meningkatkan ketepatan inferensi.
-                </p>
+        <div class="dash-step-connector"><i class="bi bi-chevron-right"></i></div>
+        <div class="dash-step-card">
+            <div class="dash-step-num">03</div>
+            <div class="dash-step-icon"><i class="bi bi-file-earmark-bar-graph-fill"></i></div>
+            <div class="dash-step-body">
+                <div class="dash-step-title">Lihat Hasil</div>
+                <div class="dash-step-desc">Dapatkan rekomendasi kerusakan & solusi perbaikan</div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="p-3 rounded h-100" style="background: var(--surface-light); border: 1px solid var(--border-light);">
-                <div class="text-accent-green fw-bold small mb-1">3. Unduh Bukti Rekomendasi</div>
-                <p class="text-muted small mb-0 font-body">
-                    Simpan atau cetak hasil diagnosa PDF untuk referensi estimasi biaya perbaikan dan penggantian suku cadang laptop.
-                </p>
-            </div>
+            <i class="bi bi-arrow-right-circle-fill dash-step-arrow"></i>
         </div>
     </div>
 </div>
+
+{{-- ═══ QUICK ACTIONS ═══ --}}
+<div class="row g-3">
+    <div class="col-md-6">
+        <a href="{{ route('user.diagnosa.index') }}" class="dash-action-card text-decoration-none">
+            <div class="dash-action-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+            <div>
+                <div class="dash-action-title">Diagnosa Baru</div>
+                <div class="dash-action-sub">Mulai sesi konsultasi hardware</div>
+            </div>
+            <i class="bi bi-chevron-right ms-auto text-accent-red fs-5"></i>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="{{ route('user.riwayat.index') }}" class="dash-action-card text-decoration-none">
+            <div class="dash-action-icon"><i class="bi bi-clock-history"></i></div>
+            <div>
+                <div class="dash-action-title">Riwayat Diagnosa</div>
+                <div class="dash-action-sub">{{ $totalDiagnosa }} sesi tersimpan</div>
+            </div>
+            <i class="bi bi-chevron-right ms-auto text-accent-red fs-5"></i>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="{{ route('user.profil') }}" class="dash-action-card text-decoration-none">
+            <div class="dash-action-icon"><i class="bi bi-person-fill"></i></div>
+            <div>
+                <div class="dash-action-title">Profil Saya</div>
+                <div class="dash-action-sub">Kelola akun & keamanan</div>
+            </div>
+            <i class="bi bi-chevron-right ms-auto text-accent-red fs-5"></i>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <div class="dash-action-card dash-action-card--info">
+            <div class="dash-action-icon"><i class="bi bi-cpu"></i></div>
+            <div>
+                <div class="dash-action-title">Metode CF</div>
+                <div class="dash-action-sub">Certainty Factor — inferensi berbasis keyakinan</div>
+            </div>
+            <span class="badge ms-auto" style="background:var(--accent-red-subtle);color:var(--accent-red);font-size:10px;">v2.5</span>
+        </div>
+    </div>
+</div>
+
 @endsection
+
+@push('scripts')
+<script>
+// Animated counter
+document.querySelectorAll('.dash-stat-num[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    if (target === 0) { el.textContent = '0' + suffix; return; }
+    let start = 0;
+    const duration = 900;
+    const step = Math.ceil(target / (duration / 16));
+    const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = start + suffix;
+        if (start >= target) clearInterval(timer);
+    }, 16);
+});
+</script>
+@endpush

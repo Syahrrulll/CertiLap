@@ -1,0 +1,291 @@
+/* ==========================================================================
+   CertiLap — Interactive Dashboard Components
+   ========================================================================== */
+
+/* ── HERO BANNER ─────────────────────────────────────────────────────────── */
+.dash-hero {
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 2.5rem 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    overflow: hidden;
+    position: relative;
+}
+.dash-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(225,29,72,0.07) 0%, transparent 70%);
+    pointer-events: none;
+}
+.dash-hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-red-subtle);
+    border: 1px solid var(--accent-red-border);
+    color: var(--text-muted);
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.dash-hero-dot {
+    width: 5px; height: 5px;
+    background: var(--accent-red);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-dot 1.6s infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.7); }
+}
+.dash-hero-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+.dash-hero-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: 480px;
+}
+/* Visual ring */
+.dash-hero-visual {
+    position: relative;
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dash-hero-ring {
+    width: 128px; height: 128px;
+    border-radius: 50%;
+    background: var(--accent-red-subtle);
+    border: 2px solid var(--accent-red-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: var(--accent-red);
+    box-shadow: 0 0 32px rgba(225,29,72,0.12);
+    animation: hero-float 3.5s ease-in-out infinite;
+}
+@keyframes hero-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+}
+.dash-hero-badge {
+    position: absolute;
+    background: #FFFFFF;
+    border: 1px solid var(--accent-red-border);
+    color: var(--accent-red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(225,29,72,0.1);
+}
+.badge-top { top: 4px; right: -16px; }
+.badge-bot { bottom: 4px; left: -16px; }
+
+/* ── STAT CARDS ──────────────────────────────────────────────────────────── */
+.dash-stat-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 1.25rem 1rem 1rem;
+    text-align: center;
+    transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
+    cursor: default;
+    display: block;
+}
+.dash-stat-card:hover {
+    border-color: var(--accent-red-border);
+    box-shadow: 0 8px 28px rgba(225,29,72,0.1);
+    transform: translateY(-3px);
+}
+.dash-stat-card--highlight {
+    background: var(--accent-red-subtle);
+    border-color: var(--accent-red-border);
+}
+.dash-stat-card--cta {
+    border: 2px dashed var(--accent-red-border);
+    background: var(--accent-red-subtle);
+}
+.dash-stat-card--cta:hover {
+    border-color: var(--accent-red);
+    background: #FFF1F2;
+}
+.dash-stat-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--accent-red-subtle);
+    border: 1px solid var(--accent-red-border);
+    color: var(--accent-red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin: 0 auto 10px;
+}
+.dash-stat-num {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--accent-red);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+.dash-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ── STEP CARDS ──────────────────────────────────────────────────────────── */
+.dash-steps {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+}
+@media (max-width: 767px) {
+    .dash-steps { flex-direction: column; }
+    .dash-step-connector { transform: rotate(90deg); align-self: center; }
+}
+.dash-step-card {
+    flex: 1;
+    background: var(--surface-light);
+    border: 1.5px solid var(--border-light);
+    border-radius: 16px;
+    padding: 1.4rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
+    cursor: default;
+    position: relative;
+}
+a.dash-step-card {
+    cursor: pointer;
+}
+a.dash-step-card:hover {
+    background: #FFF1F2;
+    border-color: var(--accent-red);
+    box-shadow: 0 8px 24px rgba(225,29,72,0.1);
+    transform: translateY(-3px);
+}
+a.dash-step-card:hover .dash-step-arrow {
+    color: var(--accent-red);
+    opacity: 1;
+    transform: translateX(3px);
+}
+.dash-step-num {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--accent-red-border);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.dash-step-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: var(--accent-red-subtle);
+    border: 1px solid var(--accent-red-border);
+    color: var(--accent-red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+}
+.dash-step-title {
+    font-weight: 800;
+    color: var(--text-dark);
+    font-size: 0.98rem;
+    margin-bottom: 2px;
+}
+.dash-step-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+.dash-step-arrow {
+    position: absolute;
+    bottom: 1rem; right: 1rem;
+    font-size: 1.3rem;
+    color: var(--border-light);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+.dash-step-connector {
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    color: var(--accent-red-border);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* ── QUICK ACTION CARDS ───────────────────────────────────────────────────── */
+.dash-action-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
+    cursor: pointer;
+    color: inherit;
+}
+.dash-action-card:hover {
+    border-color: var(--accent-red-border);
+    background: var(--accent-red-subtle);
+    box-shadow: 0 6px 20px rgba(225,29,72,0.09);
+    transform: translateX(4px);
+}
+.dash-action-card--info {
+    background: var(--surface-light);
+    cursor: default;
+}
+.dash-action-card--info:hover {
+    transform: none;
+    border-color: var(--border-light);
+    background: var(--surface-light);
+    box-shadow: none;
+}
+.dash-action-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--accent-red-subtle);
+    border: 1px solid var(--accent-red-border);
+    color: var(--accent-red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+.dash-action-title {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+.dash-action-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
